@@ -1,0 +1,62 @@
+<?php
+
+/**
+ * @file
+ * Main module file for Backup and Migrate Google Drive.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function backup_migrate_google_drive_help($route_name, RouteMatchInterface $route_match)
+{
+    switch ($route_name) {
+        case 'help.page.backup_migrate_google_drive':
+            $output = '';
+            $output .= '<h3>' . t('About') . '</h3>';
+            $output .= '<p>' . t('The Backup and Migrate Google Drive module adds Google Drive destination support to the Backup and Migrate module. This allows you to automatically upload your Drupal backups to Google Drive for secure off-site storage.') . '</p>';
+            $output .= '<h3>' . t('Requirements') . '</h3>';
+            $output .= '<ul>';
+            $output .= '<li>' . t('Google API PHP Client Library (install via Composer: <code>composer require google/apiclient</code>)') . '</li>';
+            $output .= '<li>' . t('Google Service Account with Drive API access') . '</li>';
+            $output .= '</ul>';
+            $output .= '<h3>' . t('Configuration') . '</h3>';
+            $output .= '<p>' . t('To configure a Google Drive destination:') . '</p>';
+            $output .= '<ol>';
+            $output .= '<li>' . t('Set up a Google Service Account with Drive API access') . '</li>';
+            $output .= '<li>' . t('Download the service account JSON key file') . '</li>';
+            $output .= '<li>' . t('Go to <a href="@url">Backup Destinations</a>', ['@url' => '/admin/config/development/backup_migrate/settings/destination']) . '</li>';
+            $output .= '<li>' . t('Add a new Google Drive destination with your credentials') . '</li>';
+            $output .= '</ol>';
+            return $output;
+    }
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function backup_migrate_google_drive_requirements($phase)
+{
+    $requirements = [];
+
+    if ($phase == 'runtime' || $phase == 'install') {
+        // Check if Google API Client is available.
+        if (!class_exists('Google\Client')) {
+            $requirements['backup_migrate_google_drive_google_api'] = [
+                'title' => t('Google API Client'),
+                'description' => t('The Backup and Migrate Google Drive module requires the Google API PHP Client Library. Install it with Composer: <code>composer require google/apiclient</code>'),
+                'severity' => 2, // REQUIREMENT_ERROR
+            ];
+        } else {
+            $requirements['backup_migrate_google_drive_google_api'] = [
+                'title' => t('Google API Client'),
+                'description' => t('Google API PHP Client Library is installed.'),
+                'severity' => 0, // REQUIREMENT_OK
+            ];
+        }
+    }
+
+    return $requirements;
+}

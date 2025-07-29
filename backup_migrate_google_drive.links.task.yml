@@ -1,0 +1,6 @@
+backup_migrate_google_drive.settings:
+  route_name: backup_migrate_google_drive.settings
+  title: "Google Drive"
+  description: "Configure Google Drive backup destination"
+  parent_id: backup_migrate.settings
+  weight: 10

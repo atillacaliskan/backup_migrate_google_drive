@@ -1,0 +1,12 @@
+name: "Backup and Migrate Google Drive"
+type: module
+description: "Provides Google Drive destination support for Backup and Migrate module with simple OAuth2 integration."
+core_version_requirement: ^11
+version: "1.0.0"
+dependencies:
+  - backup_migrate
+package: Backup and Migrate
+
+# Drupal.org project information
+project: "backup_migrate_google_drive"
+datestamp: 1735660800

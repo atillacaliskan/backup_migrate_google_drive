@@ -1,0 +1,20 @@
+{
+    "name": "atillacaliskan/backup_migrate_google_drive",
+    "description": "Provides Google Drive destination support for Backup and Migrate module with simple OAuth2 integration.",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": ">=8.1",
+        "drupal/core": "^11.0",
+        "drupal/backup_migrate": "*",
+        "google/apiclient": "^2.18"
+    },
+    "autoload": {
+        "psr-4": {
+            "Drupal\\backup_migrate_google_drive\\": "src/"
+        }
+    },
+    "extra": {
+        "installer-name": "backup_migrate_google_drive"
+    }
+}

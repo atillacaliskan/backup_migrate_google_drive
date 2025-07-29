@@ -1,0 +1,4 @@
+services:
+  backup_migrate_google_drive.destination_plugin.manager:
+    class: Drupal\backup_migrate_google_drive\Plugin\BackupMigrateDestination\GoogleDriveDestinationPlugin
+    parent: plugin.manager.backup_migrate_destination

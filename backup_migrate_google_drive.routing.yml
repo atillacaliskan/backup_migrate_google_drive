@@ -1,0 +1,31 @@
+backup_migrate_google_drive.settings:
+  path: "/admin/config/development/backup_migrate/settings/google-drive"
+  defaults:
+    _form: '\Drupal\backup_migrate_google_drive\Form\GoogleDriveSettingsForm'
+    _title: "Google Drive Settings"
+  requirements:
+    _permission: "administer backup and migrate"
+
+backup_migrate_google_drive.auth:
+  path: "/admin/config/development/backup_migrate/settings/google-drive/auth"
+  defaults:
+    _controller: '\Drupal\backup_migrate_google_drive\Controller\GoogleAuthController::authorize'
+    _title: "Authorize Google Drive"
+  requirements:
+    _permission: "administer backup and migrate"
+
+backup_migrate_google_drive.callback:
+  path: "/admin/config/development/backup_migrate/settings/google-drive/callback"
+  defaults:
+    _controller: '\Drupal\backup_migrate_google_drive\Controller\GoogleAuthController::callback'
+    _title: "Google Drive Authorization Callback"
+  requirements:
+    _permission: "administer backup and migrate"
+
+backup_migrate_google_drive.revoke:
+  path: "/admin/config/development/backup_migrate/settings/google-drive/revoke"
+  defaults:
+    _controller: '\Drupal\backup_migrate_google_drive\Controller\GoogleAuthController::revoke'
+    _title: "Revoke Google Drive Authorization"
+  requirements:
+    _permission: "administer backup and migrate"
